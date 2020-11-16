@@ -7,15 +7,21 @@
       :collapse="isCollapse"
       :router="true"
     >
-      <el-submenu v-for="item in showSidebar" :key="item.path" :index="item.path">
-        <template slot="title">
+      <template v-for="item in showSidebar">
+        <el-menu-item v-if="!item.children" :key="item.path" :index="item.path">
           <i :class="item.classI"></i>
-          <span slot="title">{{ item.routeName }}</span>
-        </template>
-        <el-menu-item-group v-if="item.children">
-          <el-menu-item v-for="child in item.children" :key="child.path" :index="child.path">{{ child.routeName }}</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
+          <span>{{ item.routeName }}</span>
+        </el-menu-item>
+        <el-submenu v-else :key="item.path" :index="item.path">
+          <template slot="title">
+            <i :class="item.classI"></i>
+            <span slot="title">{{ item.routeName }}</span>
+          </template>
+          <el-menu-item-group v-if="item.children">
+            <el-menu-item v-for="child in item.children" :key="child.path" :index="child.path">{{ child.routeName }}</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+      </template>
     </el-menu>
   </div>
 </template>

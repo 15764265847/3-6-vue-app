@@ -1,17 +1,19 @@
 <template>
-  <div>
-      resource
+  <div class="resource">
+    <resource-list />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
+import ResourceList from './components/List.vue';
 
 export default Vue.extend({
-  name: 'resource'
+  name: 'ResourceIndex',
+  components: {
+    ResourceList
+  }
 });
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
